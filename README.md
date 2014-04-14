@@ -14,7 +14,7 @@ Demo for request of lily for get data of finance
 4. Cd to this project and run
     * `npm install`
     * `node app.js`
-5. Open your browser and goto [localhost:8888/index.html](localhost:8888/index.html)
+5. Open your browser and goto [localhost:8888](http://localhost:8888)
 6. PS: I didn't test the page on IE and never wanna to do that if possible，**DO NOT** ask me why it's looks like that in IE, just ask IE.
 
 ## Change logs

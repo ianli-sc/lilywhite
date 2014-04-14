@@ -14,6 +14,7 @@
       "q": "1.0.1",
       "kissy": "1.4.1-5",
       "xtpl": "~0.4.1",
+      "client-http": "0.0.6",
       "grunt": "~0.4.4",
       "grunt-contrib-watch": "~0.6.1",
       "grunt-contrib-jshint": "~0.10.0",

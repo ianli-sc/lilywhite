@@ -13,7 +13,7 @@ var app = express();
  */
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "xtpl");
-app.enable("view cache");
+//app.enable("view cache");
 
 /**
  * favicon
