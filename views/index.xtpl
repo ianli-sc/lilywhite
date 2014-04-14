@@ -2,11 +2,23 @@
 <html>
 <head>
     <meta name="charset" content="utf-8" />
+    <meta charset="gbk" />
+    <meta content="text/html; charset=gbk" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="写点中文你搞得懂迈？" name="description" />
+    <link rel="shortcut icon" href="/res/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="/res/icon-76@2x.png" />
     <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js"></script>
 </head>
 <body>
     <div id="content">
         Hello World!
     </div>
+    <script src="/js/init.js"></script>
 </body>
 </html>
