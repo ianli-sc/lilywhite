@@ -1,0 +1,87 @@
+.bg-container {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    background: -moz-linear-gradient(left,  rgba(227,227,227,1) 0%, rgba(255,255,255,1) 50%, rgba(227,227,227,1) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(227,227,227,1)), color-stop(50%,rgba(255,255,255,1)), color-stop(100%,rgba(227,227,227,1)));
+    background: -webkit-linear-gradient(left,  rgba(227,227,227,1) 0%,rgba(255,255,255,1) 50%,rgba(227,227,227,1) 100%);
+    background: -o-linear-gradient(left,  rgba(227,227,227,1) 0%,rgba(255,255,255,1) 50%,rgba(227,227,227,1) 100%);
+    background: -ms-linear-gradient(left,  rgba(227,227,227,1) 0%,rgba(255,255,255,1) 50%,rgba(227,227,227,1) 100%);
+    background: linear-gradient(to right,  rgba(227,227,227,1) 0%,rgba(255,255,255,1) 50%,rgba(227,227,227,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e3e3', endColorstr='#e3e3e3',GradientType=1 );
+}
+
+.container-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container-header {
+    padding: 35px 0 25px 0;
+    width: 640px;
+    margin: 0 auto;
+}
+
+.container-header h1 {
+    font-family: 'Chivo', 'Helvetica Neue', Helvetica, Arial, serif;
+    font-weight: 900;
+    letter-spacing: -1px;
+    font-size: 48px;
+    color: #303030;
+    line-height: 1.2
+}
+
+.container-header h2 {
+    letter-spacing: -1px;
+    font-size: 24px;
+    color: #aaa;
+    font-weight: normal;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.content-separate {
+    margin: 40px 0 20px 0;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+.content-company {
+    max-height: 98px;
+    overflow: scroll;
+}
+
+.content-company .current {
+    background-color: #b10000;
+    color: #fff;
+}
+
+.content-company li {
+    display: inline-block;
+    margin: 4px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 2px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.content-data {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content-data th,
+.content-data td {
+    border: 1px solid #333;
+}
+
+@media only screen and (max-width: 640px), only screen and (max-device-width: 640px) {
+    .bg-container,
+    .bg-container .container-header,
+    .bg-container .content-company  {
+        width: 100%;
+    }
+}
