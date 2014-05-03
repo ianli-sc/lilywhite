@@ -17,9 +17,36 @@
 </head>
 <body>
     <div id="client-content">
-        <h2 class="content-title depth" title="The page is get by HttpClient from http://www.toryburch.com/ below.">The page is get by HttpClient from http://www.toryburch.com/ below.</h2>
         <div class="content-client">
-        {{{data}}}
+        {{#if (data.success)}}
+        <h2> company names </h2>
+        <ul>
+        {{#each (data.names)}}
+            <li>{{this}}</li>
+        {{/each}}
+        </ul>
+        <table>
+            <thead>
+                <tr>
+                {{#each (data.titles)}}
+                <th>{{this}}</th>
+                {{/each}}
+                </tr>
+            </thead>
+                {{#each (data.data)}}
+                <tr>
+                    {{#each (this)}}
+                    <td>{{this}}</td>
+                    {{/each}}
+                </tr>
+                {{/each}}
+            <tbody>
+            </tbody>
+        </table>
+        {{#else}}
+        <h2>Fail...</h2>
+        {{/else}}
+        {{/if}}
         </div>
     </div>
     <script src="/js/init.js"></script>
