@@ -1,0 +1,68 @@
+.main-content {
+    width: 960px;
+    margin: 0 auto;
+    font: 16px/27px normal 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.main-content section {
+    padding: 20px;
+    box-shadow: -5px 0px 5px #D8D8D8;
+}
+
+.main-content .exp-hd {
+    font-size: 20px;
+    font-family: optima, baskervile, arial;
+    margin-bottom: 15px;
+}
+
+.exp-hd * {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    line-height: 2;
+}
+
+.exp-hd .icon {
+    font-style: normal;
+}
+
+.main-content a,
+.main-content a:hover {
+    color: #08c;
+}
+
+/*job exp*/
+.job-exp li {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.job-exp dt {
+    float: left;
+    width: 90px;
+    color: #999;
+}
+
+.job-exp dd {
+    margin-left: 120px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cacaca;
+}
+
+.job-exp dd p {
+    color: #666;
+}
+
+.job-exp dd h4 {
+    color: #5a5a5a;
+}
+
+.job-exp dd .duty {
+    font-size: 16px;
+    font-style:italic;
+    font-weight: bold;
+}
+
+.job-exp dd .company {
+    margin-left: 15px;
+}
