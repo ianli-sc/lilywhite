@@ -1,6 +1,6 @@
 {
     "name": "lilywhite",
-    "version": "1.1.0",
+    "version": "1.0.0",
     "port": "8888",
     "author": [
         "IanLi<ian.primary.li@gmail.com>"
@@ -12,5 +12,4 @@
       "client-http": "0.0.6"
     }
   }
-
 
