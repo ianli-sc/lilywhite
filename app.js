@@ -105,7 +105,7 @@ var timer = setInterval(function() {
     if(!result) {
         clearInterval(timer);
     }
-}, 10000);
+}, 20000);
 
 ///**
 // * create table
