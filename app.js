@@ -86,7 +86,7 @@ function getData() {
                     }
                 })
                 .on('end', function(count) {
-                    console.log('added ' + fileName + ' to db success!');
+                    console.log('added ' + fileName + ' to db success! with Index : ' + returnData.index);
                 })
                 .on('error', function(err) {
                     new Error('Read CSV Error', err.message);
