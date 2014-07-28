@@ -100,12 +100,19 @@ function getData() {
 //read files to get names of company for load;
 init();
 var result = true;
-var timer = setInterval(function() {
-    result = getData();
-    if(!result) {
-        clearInterval(timer);
-    }
-}, 20000);
+
+//run task every day!
+setInterval(function() {
+    var timer = setInterval(function() {
+        result = getData();
+        if(!result) {
+            //reset index
+            returnData.index = 0;
+            clearInterval(timer);
+        }
+    }, 20000);
+}, 86400000);
+
 
 ///**
 // * create table
