@@ -42,54 +42,72 @@ function init() {
 
 function getData() {
     if(!returnData.names[returnData.index]) {
-        console.log('all done');
+        console.log('All done without error, see you tomorrow my queen~');
+        console.log('You can check the downloaded file in folder ' + fileDir);
         return false;
     }
     //get current company name
     var curentName = returnData.names[returnData.index];
-    //auto increase
-    returnData.index = returnData.index + 1;
+    DB.execute('select Date from lilywhite.' + curentName + ' order by "Index" desc limit 1', function(error, result) {
+        var lastDate = result[0].Date;
+        lastDate = lastDate.split('-');
+        //auto increase
+        returnData.index = returnData.index + 1;
 
-    var curDate = new Date();
-    //get data from yahoo
-    var linkName = 'http://ichart.finance.yahoo.com/table.csv?s=' + curentName + '&a=00&b=1&c=1900&' +
-        'd=' + curDate.getMonth() + '&e=' + curDate.getDate() + '&f=' + curDate.getFullYear() + '&g=d&ignore=.csv';
+        var curDate = new Date();
+        //get data from yahoo
+        var lastDateDay = (parseInt(lastDate[2], 10) + 1);
+        //if already has the data do nothing
+        if(lastDateDay > curDate.getDate()) {
+            return;
+        }
 
-    var fileName = curentName + '.csv';
+        var linkName = 'http://ichart.finance.yahoo.com/table.csv?s=' + curentName + 
+            '&a=' + (parseInt(lastDate[1], 10) -1) + '&b=' + lastDateDay + '&c=' + lastDate[0] + '&' +
+            'd=' + curDate.getMonth() + '&e=' + curDate.getDate() + '&f=' + curDate.getFullYear() + '&g=d&ignore=.csv';
 
-    Http.get(linkName, function(response) {
-        var file = Fs.createWriteStream(fileDir + '/' + fileName);
-        var rowNames = [];
-        response.pipe(file);
-        file.on('finish', function() {
-            file.close(function(err) {
-                Csv().from.stream(Fs.createReadStream(fileDir + '/' + fileName)).transform( function(row){
-                    row.unshift(row.pop());
-                    return row;
-                }).on('record', function(row, index) {
-                    //save content to db
-                    if(0 !== index) {
-                        var dbData = {};
-                        S.each(rowNames, function(name, index) {
-                            dbData[name] = row[index];
-                        });
-                        DB.table(curentName).data(dbData).add(function(err, result) {
-                            //call back?
-                        });
-                    } else {
-                        S.each(row, function(item) {
-                            if(item === 'Adj Close') {
-                                item = 'Adj_Close';
-                            }
-                            rowNames.push(item);
-                        });
-                    }
-                })
-                .on('end', function(count) {
-                    console.log('added ' + fileName + ' to db success! with Index : ' + returnData.index);
-                })
-                .on('error', function(err) {
-                    new Error('Read CSV Error', err.message);
+        console.log('For the Queen ! Ian li is sending request to : ' + linkName);
+        console.log(' ');
+        var fileName = curentName + '.csv';
+
+        Http.get(linkName, function(response) {
+            var file = Fs.createWriteStream(fileDir + '/' + fileName);
+            var rowNames = [];
+            response.pipe(file);
+            file.on('finish', function() {
+                file.close(function(err) {
+                    Csv().from.stream(Fs.createReadStream(fileDir + '/' + fileName)).transform( function(row){
+                        row.unshift(row.pop());
+                        return row;
+                    }).on('record', function(row, index) {
+                        //save content to db
+                        if(0 !== index) {
+                            var dbData = {};
+                            S.each(rowNames, function(name, index) {
+                                dbData[name] = row[index];
+                            });
+                            DB.table('lilywhite.' + curentName).data(dbData).add(function(err, result) {
+                                //call back?
+                            });
+                        } else {
+                            S.each(row, function(item) {
+                                if(item === 'Adj Close') {
+                                    item = 'Adj_Close';
+                                }
+                                rowNames.push(item);
+                            });
+                        }
+                    })
+                    .on('end', function(count) {
+                        console.log('added ' + fileName + ' to db success! with Index : ' + returnData.index + ', ' +
+                            (501 - returnData.index) + ' remain...'
+                        );
+                        console.log('===================================');
+                        console.log(' ');
+                    })
+                    .on('error', function(err) {
+                        new Error('Read CSV Error', err.message);
+                    });
                 });
             });
         });
@@ -101,9 +119,21 @@ function getData() {
 init();
 var result = true;
 
+var timer = setInterval(function() {
+    console.log('For the queen! work work...');
+    result = getData();
+    if(!result) {
+        //reset index
+        returnData.index = 0;
+        clearInterval(timer);
+    }
+}, 5000);
+
 //run task every day!
 setInterval(function() {
+    var result = true;
     var timer = setInterval(function() {
+        console.log('For the queen! work work...');
         result = getData();
         if(!result) {
             //reset index
@@ -112,21 +142,3 @@ setInterval(function() {
         }
     }, 20000);
 }, 86400000);
-
-
-///**
-// * create table
-// */
-//function createTable(name) {
-//    DB.execute("CREATE TABLE `" + name + "` (" +
-//      "`Index` int(11) NOT NULL AUTO_INCREMENT," +
-//      "`Date` varchar(255) NOT NULL," +
-//      "`Open` int(255) NOT NULL," +
-//      "`High` int(255) NOT NULL," +
-//      "`Low` int(255) NOT NULL," +
-//      "`Close` int(255) NOT NULL," +
-//      "`Volume` int(255) NOT NULL," +
-//      "`Adj_Close` int(255) NOT NULL," +
-//      "PRIMARY KEY (`Index`)" +
-//    ") ENGINE=InnoDB AUTO_INCREMENT=320 DEFAULT CHARSET=utf8;")
-//}
