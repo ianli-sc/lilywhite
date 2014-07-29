@@ -74,7 +74,7 @@ function getData() {
                         S.each(rowNames, function(name, index) {
                             dbData[name] = row[index];
                         });
-                        DB.table('lilywhite.' + curentName).data(dbData).add(function(err, result) {
+                        DB.table('lilywhite.`' + curentName + '`').data(dbData).add(function(err, result) {
                             //call back?
                         });
                     } else {

@@ -48,7 +48,7 @@ function getData() {
     }
     //get current company name
     var curentName = returnData.names[returnData.index];
-    DB.execute('select Date from lilywhite.' + curentName + ' order by "Index" desc limit 1', function(error, result) {
+    DB.execute('select Date from lilywhite.`' + curentName + '` order by "Index" desc limit 1', function(error, result) {
         var lastDate = result[0].Date;
         lastDate = lastDate.split('-');
         //auto increase
@@ -86,7 +86,7 @@ function getData() {
                             S.each(rowNames, function(name, index) {
                                 dbData[name] = row[index];
                             });
-                            DB.table('lilywhite.' + curentName).data(dbData).add(function(err, result) {
+                            DB.table('lilywhite.`' + curentName + '`').data(dbData).add(function(err, result) {
                                 //call back?
                             });
                         } else {
